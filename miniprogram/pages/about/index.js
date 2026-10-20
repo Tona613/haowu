@@ -1,0 +1,2 @@
+const U=require('../../utils/ui');const D=U.D;
+Page({data:{item:null,rows:[]},onLoad(q){this.id=q.id;},onShow(){U.run(()=>{const i=D.viewItem(D.getItem(D.read(),this.id));const fields=[['分类',i.category+' · '+i.sub],['拥有开始日期',i.start],['购入价格',i.priceText],['购入渠道',i.channel],['来自谁',i.source],['品牌',i.brand],['型号',i.model],['尺寸',i.size],['备注',i.note]];this.setData({item:i,rows:fields.map(f=>({label:f[0],value:f[1]||'未填写'}))});});},edit(){U.go('item-form','id='+this.id);},copy(){wx.setClipboardData({data:this.data.item.link});}});

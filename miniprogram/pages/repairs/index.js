@@ -1,0 +1,2 @@
+const U=require('../../utils/ui');const D=U.D;
+Page({data:{item:null,records:[],total:'0'},onLoad(q){this.id=q.id;},onShow(){U.run(()=>{const db=D.read(),records=D.records(db,'repairs',this.id);this.setData({item:D.viewItem(D.getItem(db,this.id)),records,total:records.reduce((n,r)=>n+(r.cost||0),0).toFixed(2)});});},add(){U.go('record-form','kind=repairs&itemId='+this.id);},edit(e){U.go('record-form','kind=repairs&itemId='+this.id+'&id='+e.currentTarget.dataset.id);}});

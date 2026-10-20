@@ -1,0 +1,25 @@
+const U=require('../../utils/ui');const D=U.D;
+Page({
+ data:{items:[],stories:[],allStories:[],count:0,limits:[],loaded:false,activeStage:0,stageDots:[],panel:'',candidates:[],pickerCategories:[],pickerChildren:[],pickCategoryId:'',pickSubId:'',replacingId:'',pendingId:''},
+ onShow(){this.refresh();},
+ refresh(){U.run(()=>{const db=D.read(),owned=db.items.filter(i=>!i.departure);const ids=Array.isArray(db.homeShowcaseIds)?db.homeShowcaseIds:[];const valid=[...new Set(ids)].filter(id=>owned.some(i=>i.id===id)).slice(0,6);if(JSON.stringify(ids)!==JSON.stringify(valid))D.update(next=>{next.homeShowcaseIds=valid;});const items=valid.map(id=>D.viewItem(owned.find(i=>i.id===id)));const allStories=D.records(db,'stories');const limits=[];db.categories.forEach(c=>c.children.forEach(s=>{const n=owned.filter(i=>i.subId===s.id).length;if(s.limit!==null&&n>=s.limit)limits.push({id:s.id,categoryId:c.id,text:s.name+' '+n+'/'+s.limit+' · 已达到持有上限'});}));const baseCandidates=owned.filter(i=>!valid.includes(i.id)).sort((a,b)=>b.start.localeCompare(a.start));const pickerCategories=[{id:'',name:'全部',count:baseCandidates.length,children:[]}].concat(db.categories.map(c=>Object.assign({},c,{count:baseCandidates.filter(i=>i.categoryId===c.id).length})).filter(c=>c.count>0));const selected=pickerCategories.find(c=>c.id===this.data.pickCategoryId)||pickerCategories[0];const pickCategoryId=selected.id;const pickSubId=pickCategoryId===this.data.pickCategoryId?this.data.pickSubId:'';const pickerChildren=pickCategoryId?[{id:'',name:'全部',count:selected.count}].concat((selected.children||[]).map(s=>Object.assign({},s,{count:baseCandidates.filter(i=>i.subId===s.id).length})).filter(s=>s.count>0)):[];const candidates=baseCandidates.filter(i=>(!pickCategoryId||i.categoryId===pickCategoryId)&&(!pickSubId||i.subId===pickSubId)).map(D.viewItem);this.setData({items,stories:allStories.slice(0,3),allStories,count:owned.length,candidates,pickerCategories,pickerChildren,pickCategoryId,pickSubId,activeStage:Math.min(this.data.activeStage,Math.max(0,items.length-(items.length===6?1:0))),stageDots:Array.from({length:items.length?items.length+(items.length<6?1:0):0},(_,n)=>n),limits,loaded:true});});},
+ saveSelection(ids){return U.run(()=>{D.update(db=>{const valid=[...new Set(ids)].filter(id=>db.items.some(i=>i.id===id&&!i.departure));if(valid.length>6)throw Error('展台最多放入六件好物');db.homeShowcaseIds=valid;});this.refresh();return true;});},
+ stageChange(e){this.setData({activeStage:e.detail.current});},
+ open(e){U.go('detail','id='+e.currentTarget.dataset.id);},
+ all(){getApp().itemFilter={status:'owned',query:'',categoryId:'',subId:''};wx.switchTab({url:'/pages/items/index'});},
+ add(){this.closePanel();U.go('item-form');},
+ story(){this.closePanel();U.go('select-item');},
+ share(){this.closePanel();U.go('share-select');},
+ allStories(){this.setData({panel:'stories'});},
+ closePanel(){this.setData({panel:'',replacingId:'',pendingId:''});},
+ manage(){this.refresh();this.setData({panel:'manage'});},
+ pick(){this.setData({pickCategoryId:'',pickSubId:'',panel:'pick',replacingId:''});this.refresh();},
+ selectPickParent(e){this.setData({pickCategoryId:e.currentTarget.dataset.id||'',pickSubId:''});this.refresh();},
+ selectPickChild(e){this.setData({pickSubId:e.currentTarget.dataset.id||''});this.refresh();},
+ replace(e){this.setData({panel:'pick',replacingId:e.currentTarget.dataset.id});},
+ choose(e){const id=e.currentTarget.dataset.id,ids=this.data.items.map(i=>i.id);if(this.data.replacingId){const index=ids.indexOf(this.data.replacingId);if(index<0)return U.toast('这件物品已移出展台');ids[index]=id;}else ids.push(id);if(this.saveSelection(ids))this.closePanel();},
+ chooseTarget(e){const ids=this.data.items.map(i=>i.id),index=ids.indexOf(e.currentTarget.dataset.id);if(index<0)return;ids[index]=this.data.pendingId;if(this.saveSelection(ids))this.closePanel();},
+ remove(e){this.saveSelection(this.data.items.map(i=>i.id).filter(id=>id!==e.currentTarget.dataset.id));},
+ move(e){const ids=this.data.items.map(i=>i.id),index=ids.indexOf(e.currentTarget.dataset.id),target=index+Number(e.currentTarget.dataset.step);if(index<0||target<0||target>=ids.length)return;[ids[index],ids[target]]=[ids[target],ids[index]];this.saveSelection(ids);},
+ limit(e){getApp().itemFilter={status:'owned',query:'',categoryId:e.currentTarget.dataset.category,subId:e.currentTarget.dataset.id};wx.switchTab({url:'/pages/items/index'});}
+});

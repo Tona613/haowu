@@ -1,0 +1,120 @@
+/* Homepage photo cards and individual light oak trays only. */
+.showcase{margin:32rpx calc(0rpx - 36rpx) 0;overflow:hidden}
+.showcase-carousel{height:660rpx;width:100%}
+.showcase-slide{height:660rpx;box-sizing:border-box;padding:16rpx 0 0;display:flex;flex-direction:column;align-items:center}
+.showcase-empty{height:660rpx;display:flex;flex-direction:column;align-items:center;padding-top:16rpx}
+.showcase-display{width:500rpx;height:584rpx;position:relative;flex-shrink:0}
+.showcase-frame{position:absolute;z-index:2;width:464rpx;height:520rpx;left:18rpx;top:0;padding:12rpx 12rpx 0;background:#fffdf8;border:1rpx solid #e7e2d8;border-radius:12rpx;box-shadow:0 5rpx 14rpx #61523d10;overflow:hidden;transform:none}
+.showcase-photo{width:100%;height:434rpx;overflow:hidden;border-radius:5rpx;background:#efeee7}
+.showcase-frame-empty{display:flex;align-items:center;justify-content:center;background:#fcfaf5}
+.showcase-plus{font-family:Arial,sans-serif;color:#69765e;font-size:78rpx;line-height:1;font-weight:200}
+.showcase-base{position:absolute;left:0;top:508rpx;width:500rpx;height:64rpx;border-radius:9rpx 9rpx 13rpx 13rpx;background:repeating-linear-gradient(2deg,#b98e5810 0,#b98e5810 1rpx,transparent 1rpx,transparent 7rpx),linear-gradient(90deg,#d8b486,#ecd0a7 18%,#e5c499 75%,#d4ae7b);box-shadow:0 9rpx 16rpx #6c51321c,0 2rpx 3rpx #75543120;border-bottom:2rpx solid #cba675}
+.showcase-base::before{content:"";position:absolute;left:0;top:calc(0rpx - 14rpx);width:100%;height:23rpx;border-radius:10rpx 10rpx 7rpx 7rpx;background:repeating-linear-gradient(0deg,transparent 0,transparent 5rpx,#bc955d18 5rpx,#bc955d18 6rpx),linear-gradient(110deg,#f2dfbf,#e8cca3);border:1rpx solid #f5e6ce;box-sizing:border-box}
+.showcase-label{width:100%;height:72rpx;display:flex;align-items:center;justify-content:center;text-align:center}
+.showcase-name{font-family:"Songti SC","STSong","SimSun",serif;font-size:31rpx;font-weight:600;line-height:1.5;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.showcase-slide>.showcase-label{height:48rpx;width:500rpx}
+.showcase-base-days{position:absolute;z-index:1;top:18rpx;left:0;width:100%;height:36rpx;line-height:36rpx;text-align:center;font-family:Georgia,"PingFang SC","Microsoft YaHei",sans-serif;font-size:25rpx;font-weight:500;letter-spacing:1rpx;color:#59442e;white-space:nowrap}
+.showcase-invite{font-family:"Songti SC","STSong","SimSun",serif;font-size:31rpx;text-align:center;margin-top:12rpx}
+.showcase-dots{display:flex;align-items:center;justify-content:center;gap:16rpx;height:28rpx;margin-top:0}
+.showcase-dot{width:12rpx;height:12rpx;border-radius:12rpx;background:#d6d7ce;transition:width .2s,background .2s}
+.showcase-dot-active{width:32rpx;background:#69765e}
+
+/* Match the existing clickable area with a pointer in the web preview. */
+.home-all-entry,.home-all-entry text{cursor:pointer}
+
+.home-actions{display:flex;gap:18rpx;margin:24rpx 0 36rpx}.home-actions button{flex:1;border:1rpx solid #d9d3c7;background:#fbf9f4;font-size:27rpx;line-height:2.7;padding:0 8rpx;cursor:pointer}.home-showcase-heading{gap:8rpx}.home-showcase-heading .section-title{font-size:34rpx}.home-text-button{font-size:23rpx;color:#74776e;white-space:nowrap;padding:8rpx 0;line-height:1.5;cursor:pointer}.home-panel-backdrop{position:fixed;inset:0;background:#29291f55;z-index:100}.home-panel{position:fixed;bottom:0;left:0;right:0;background:#faf9f4;border-radius:24rpx 24rpx 0 0;padding:28rpx 32rpx calc(32rpx + env(safe-area-inset-bottom));z-index:101;box-shadow:0 0 40rpx #29291f15}.home-panel-header{margin-bottom:12rpx}.home-panel-header .section-title{font-size:32rpx}.home-panel-note{margin-bottom:20rpx}.home-panel-scroll{display:block;height:55vh;overflow-y:auto}.home-panel button,.home-panel [role="button"],.showcase-empty{cursor:pointer}.home-manage-row{padding:20rpx 0;border-bottom:1rpx solid #e6e2d8;margin-bottom:16rpx}.home-manage-actions{display:flex;justify-content:space-between;margin-top:12rpx;gap:8rpx}.home-manage-actions button{font-size:23rpx;padding:0 18rpx;background:#eeeee5;line-height:2.4}.home-pick-row{display:flex;align-items:center;gap:18rpx;padding:20rpx 0;border-bottom:1rpx solid #e6e2d8;justify-content:space-between}.home-pick-photo{width:88rpx;height:88rpx;overflow:hidden;border-radius:8rpx;flex-shrink:0}.home-pick-copy{flex:1;min-width:0}.home-pick-name{font-size:28rpx;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.home-story-entry{padding:20rpx 0;border-bottom:1rpx solid #e6e2d8}.home-story-photo{height:200rpx;width:240rpx;overflow:hidden;border-radius:8rpx;margin-top:12rpx}
+
+/* Empty showcase invitation: decorative photo cards and a clear add affordance. */
+.showcase-frame-empty{flex-direction:column;padding:30rpx 16rpx;background:linear-gradient(135deg,#fdfbf6,#f7f4eb);gap:20rpx}
+.showcase-invitation-art{width:280rpx;height:224rpx;position:relative;flex-shrink:0}
+.invitation-card{position:absolute;width:112rpx;height:146rpx;background:#fffdf7;border:2rpx solid #aaa98e;border-radius:3rpx;box-shadow:0 3rpx 6rpx #5c60400b}
+.invitation-card-back{left:58rpx;top:24rpx;transform:rotate(-12deg);padding:10rpx 8rpx 24rpx}
+.invitation-landscape{width:100%;height:100%;position:relative;overflow:hidden;background:#edeade;border:1rpx solid #d5d1bd}
+.invitation-sun{position:absolute;right:10rpx;top:12rpx;width:18rpx;height:18rpx;border-radius:50%;background:#fffef6}
+.invitation-hill{position:absolute;width:90rpx;height:90rpx;border-radius:10rpx;transform:rotate(45deg)}
+.invitation-hill-one{left:calc(0rpx - 30rpx);top:54rpx;background:#cfceb9}
+.invitation-hill-two{left:35rpx;top:60rpx;background:#e0ddca}
+.invitation-card-front{left:146rpx;top:47rpx;transform:rotate(13deg);background:#f7f5ea}
+.invitation-stem{position:absolute;width:2rpx;height:78rpx;background:#8d9973;left:52rpx;top:32rpx;transform:rotate(12deg)}
+.invitation-leaf{position:absolute;width:16rpx;height:29rpx;border-radius:90% 0 90% 0;background:#929f7c}
+.invitation-leaf-one{left:54rpx;top:25rpx;transform:rotate(10deg)}
+.invitation-leaf-two{left:34rpx;top:46rpx;transform:rotate(-65deg)}
+.invitation-leaf-three{left:59rpx;top:58rpx;transform:rotate(15deg)}
+.invitation-leaf-four{left:31rpx;top:78rpx;transform:rotate(-65deg)}
+.invitation-heart{position:absolute;left:5rpx;top:69rpx;color:#859071;font-family:Arial,sans-serif;font-size:45rpx;line-height:1;transform:rotate(-15deg)}
+.invitation-spark{position:absolute;right:0;top:0;color:#6b7c5c;font-size:44rpx;line-height:1}
+.invitation-plus{position:absolute;left:99rpx;bottom:0;width:80rpx;height:80rpx;border-radius:50%;background:#8a9875;display:flex;align-items:center;justify-content:center;color:#fffef8;box-shadow:0 3rpx 8rpx #6b77511a}
+.invitation-plus text{font-family:Arial,sans-serif;font-size:56rpx;font-weight:300;line-height:1}
+.showcase-invitation-copy{text-align:center;font-family:"Songti SC","STSong","SimSun",serif;font-size:28rpx;line-height:1.85;letter-spacing:1rpx;color:#526649;white-space:nowrap}
+
+/* Compact homepage: reserve first-screen space for the latest story. */
+.home-page .eyebrow{margin:4rpx 0 16rpx}
+.home-page .home-actions{margin:18rpx 0 24rpx}
+.home-page .showcase{margin-top:20rpx}
+.home-page .showcase-carousel,.home-page .showcase-slide,.home-page .showcase-empty{height:440rpx}
+.home-page .showcase-slide,.home-page .showcase-empty{padding-top:10rpx}
+.home-page .showcase-display{width:380rpx;height:418rpx}
+.home-page .showcase-frame{width:352rpx;height:368rpx;left:14rpx;padding:10rpx 10rpx 0}
+.home-page .showcase-photo{height:290rpx}
+.home-page .showcase-label{height:64rpx}
+.home-page .showcase-name{font-size:28rpx}
+.home-page .showcase-base{width:380rpx;top:356rpx;height:50rpx}
+.home-page .showcase-base::before{top:calc(0rpx - 11rpx);height:20rpx}
+.home-page .showcase-base-days{top:12rpx;height:30rpx;line-height:30rpx;font-size:23rpx}
+.home-page .showcase-frame-empty{padding:16rpx 12rpx;gap:8rpx}
+.home-page .showcase-invitation-art{transform:scale(.7);transform-origin:center bottom;margin-top:calc(0rpx - 66rpx)}
+.home-page .showcase-invitation-copy{font-size:25rpx;line-height:1.7;letter-spacing:0}
+.home-page .section{margin-top:10rpx}
+.home-page .story-row{padding:16rpx 0}
+.home-page .story-text{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.6}
+
+/* Only the companion heading: preserve its existing row height. */
+.home-page .home-all-entry .title{display:flex;align-items:baseline;height:64.8rpx;line-height:64.8rpx;font-family:"Songti SC","STSong","Noto Serif CJK SC","SimSun",serif;font-size:44rpx;font-weight:600;color:#22251f;white-space:nowrap}
+.home-page .home-all-entry .count{display:inline-flex;align-items:baseline;gap:10rpx;margin-left:18rpx;font-family:Georgia,"Times New Roman",serif;font-size:80rpx;line-height:64.8rpx;font-weight:400;color:#526649}
+.home-page .home-all-entry .count .small{font-family:"Songti SC","STSong","SimSun",serif;font-size:26rpx;line-height:1;font-weight:400}
+.home-pick-category-scroll,.home-pick-subcategory-scroll{display:block;white-space:nowrap;overflow-x:auto;scrollbar-width:none}.home-pick-category-track{display:flex;gap:10rpx;width:max-content;min-width:100%}.home-pick-category-tab{font-size:25rpx;color:#73786e;padding:10rpx 14rpx 12rpx;border:1rpx solid transparent;border-bottom-color:#dcdcd3;border-radius:10rpx 10rpx 0 0;white-space:nowrap;cursor:pointer}.home-pick-category-tab.active{background:#69765e;color:#fff;font-weight:600;border-color:#69765e}.home-pick-subcategory-scroll{margin-top:14rpx;padding-top:10rpx}.home-pick-subcategory-tab{font-size:24rpx;color:#6f7469;padding:8rpx 14rpx;border:1rpx solid #deded5;border-radius:18rpx;background:#f0f0e9;white-space:nowrap;cursor:pointer}.home-pick-subcategory-tab.active{background:#e9ede1;color:#58684b;border-color:#d5dacb}
+
+/* Floating home entry for the upcoming sharing flow. */
+.share-float{position:fixed;z-index:20;right:30rpx;bottom:calc(135rpx + env(safe-area-inset-bottom));width:132rpx;height:128rpx;padding:8rpx 4rpx 7rpx;border:1rpx solid #d6d8cb;border-radius:20rpx;background:linear-gradient(145deg,#f2f1e8,#e8ecdf);color:#536347;box-shadow:0 5rpx 14rpx #46533714;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4rpx;line-height:1.2}
+.share-float-icon{width:58rpx;height:58rpx;border-radius:50%;background:#dce3d2;display:flex;align-items:center;justify-content:center;position:relative}
+.share-float-arrow{font:400 42rpx/1 Arial,sans-serif;color:#536347;transform:translateY(-2rpx)}
+.share-float-base{position:absolute;left:17rpx;bottom:12rpx;width:24rpx;height:2rpx;border-radius:2rpx;background:#536347}
+.share-float-label{font-size:22rpx;font-weight:600;letter-spacing:.3rpx}
+.share-float:active{transform:scale(.96);background:#e5eadd}
+
+/* Refine the share mark: keep the arrow separate from its tray line. */
+.share-float{gap:10rpx}
+.share-float-icon{width:50rpx;height:50rpx}
+.share-float-arrow{position:absolute;left:50%;top:8rpx;width:20rpx;height:24rpx;transform:translateX(-50%)}
+.share-float-shaft{position:absolute;left:9rpx;top:0;width:2rpx;height:20rpx;border-radius:2rpx;background:#536347}
+.share-float-head-left,.share-float-head-right{position:absolute;top:0;width:10rpx;height:2rpx;border-radius:2rpx;background:#536347}
+.share-float-head-left{left:0;transform:rotate(-45deg);transform-origin:right center}
+.share-float-head-right{left:10rpx;transform:rotate(45deg);transform-origin:left center}
+.share-float-base{left:50%;bottom:9rpx;transform:translateX(-50%)}
+
+/* Share icon matching the selected upload-tray mark. */
+.share-float-icon{width:52rpx;height:52rpx}
+.share-float-arrow{top:7rpx;height:25rpx}
+.share-float-shaft{height:22rpx}
+.share-float-base{bottom:8rpx;width:24rpx;height:2rpx}
+.share-float-base::before,.share-float-base::after{content:"";position:absolute;bottom:0;width:2rpx;height:10rpx;border-radius:2rpx;background:#536347}
+.share-float-base::before{left:0}
+.share-float-base::after{right:0}
+/* Bring the arrow into the tray opening so the mark reads as one icon. */
+.share-float-shaft{height:27rpx}
+/* Match the compact proportions of the approved static share icon. */
+.share-float-icon{width:52rpx;height:52rpx}
+.share-float-arrow{top:13rpx;width:18rpx;height:21rpx}
+.share-float-shaft{left:8rpx;height:21rpx}
+.share-float-head-left,.share-float-head-right{width:7rpx}
+.share-float-head-left{left:2rpx}
+.share-float-head-right{left:9rpx}
+.share-float-base{bottom:12rpx;width:22rpx}
+.share-float-base::before,.share-float-base::after{height:6rpx}
+/* Balance the tray sides against a shorter arrow shaft. */
+.share-float-shaft{height:16rpx}
+.share-float-base::before,.share-float-base::after{height:9rpx}
+/* Keep the tray stroke as thick as the arrow shaft. */
+.share-float-base{height:2rpx}
+/* Nudge the arrow closer to the tray without touching its baseline. */
+.share-float-arrow{top:15rpx}

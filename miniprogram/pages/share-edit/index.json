@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "编辑分享",
+  "usingComponents": {
+    "art": "/components/art/index"
+  }
+}

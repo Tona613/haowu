@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "添加物品",
+  "usingComponents": {
+    "art": "/components/art/index"
+  }
+}

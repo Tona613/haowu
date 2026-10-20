@@ -1,0 +1,1 @@
+Component({properties:{src:{type:String,value:''},kind:{type:String,value:''},fit:{type:String,value:'cover'}},data:{broken:false},observers:{src(){this.setData({broken:false});}},methods:{failed(){this.setData({broken:true});}}});

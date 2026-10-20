@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "物品档案",
+  "usingComponents": {
+    "art": "/components/art/index"
+  }
+}

@@ -1,0 +1,13 @@
+const fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),out=path.join(root,'dist');
+fs.mkdirSync(out,{recursive:true});
+const walk=dir=>fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(path.join(dir,e.name)):[path.join(dir,e.name)]);
+const files={};for(const p of walk(path.join(root,'miniprogram')))if(/\.(js|json|wxml|wxss)$/.test(p))files[path.relative(path.join(root,'miniprogram'),p).replaceAll('\\','/')]=fs.readFileSync(p,'utf8');
+fs.writeFileSync(path.join(out,'bundle.json'),JSON.stringify(files));
+fs.copyFileSync(path.join(root,'preview','shell.css'),path.join(out,'shell.css'));
+let runtime=fs.readFileSync(path.join(root,'preview','runtime.js'),'utf8').replace("fetch('/bundle')","fetch('./bundle.json')").replaceAll("'/assets/","'./assets/");
+fs.writeFileSync(path.join(out,'runtime.js'),runtime);
+fs.writeFileSync(path.join(out,'index.html'),fs.readFileSync(path.join(root,'preview','index.html'),'utf8').replaceAll('="/','="./'));
+fs.cpSync(path.join(root,'miniprogram','assets'),path.join(out,'assets'),{recursive:true});
+fs.writeFileSync(path.join(out,'.nojekyll'),'');
+console.log('Static demo built in dist');

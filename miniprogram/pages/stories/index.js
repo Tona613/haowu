@@ -1,0 +1,2 @@
+const U=require('../../utils/ui');const D=U.D;
+Page({data:{item:null,records:[]},onLoad(q){this.id=q.id;},onShow(){U.run(()=>{const db=D.read();this.setData({item:D.viewItem(D.getItem(db,this.id)),records:D.records(db,'stories',this.id)});});},add(){U.go('record-form','kind=stories&itemId='+this.id);},edit(e){U.go('record-form','kind=stories&itemId='+this.id+'&id='+e.currentTarget.dataset.id);},preview(e){const r=this.data.records.find(r=>r.id===e.currentTarget.dataset.id);wx.previewImage({urls:r.photos,current:e.currentTarget.dataset.src});}});

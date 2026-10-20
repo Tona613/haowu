@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "故事",
+  "usingComponents": {
+    "art": "/components/art/index"
+  }
+}

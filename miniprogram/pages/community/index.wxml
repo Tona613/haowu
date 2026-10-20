@@ -1,0 +1,29 @@
+<view class="page community-page">
+  <view class="title">真实使用，慢慢分享</view>
+  <view class="community-intro">从一件真正拥有过的物品开始。</view>
+  <view class="community-filters">
+    <view wx:for="{{filters}}" wx:key="*this" class="community-filter {{activeFilter===item?'active':''}}" bindtap="selectFilter" data-value="{{item}}">{{item}}</view>
+  </view>
+  <view wx:if="{{localPosts.length}}" class="share-community-local">我的分享 · 仅保存在本机</view>
+  <view wx:for="{{localPosts}}" wx:key="id" class="community-card share-community-card" bindtap="openShare" data-id="{{item.id}}" role="button" aria-label="查看分享 {{item.title}}">
+    <view class="community-card-content">
+      <view class="community-user"><view class="community-avatar">我</view><view class="community-author">{{item.author}}</view></view>
+      <view class="community-post-title">{{item.title}}</view>
+      <view class="community-card-photo"><art src="{{item.item.photo}}" kind="{{item.item.art}}" fit="contain"/></view>
+      <view class="community-item-meta">{{item.item.category}}{{item.item.sub ? ' · ' + item.item.sub : ''}} · 建档 {{item.item.createdDays === null ? "未记录" : item.item.createdDays + " 天"}}</view>
+      <view class="community-post-text">{{item.text}}</view>
+      <view class="community-actions"><text catchtap="noop">♡ 收藏</text><text catchtap="noop">○ 回复</text></view>
+    </view>
+  </view>
+  <view class="community-feed-note">体验示例</view>
+  <view wx:for="{{posts}}" wx:key="id" class="community-card">
+    <view class="community-card-content">
+      <view class="community-user"><view class="community-avatar">好</view><view class="community-author">{{item.author}}</view></view>
+      <view class="community-post-title">{{item.title}}</view>
+      <view class="community-card-photo"><art src="" kind="{{item.art}}" fit="cover"/></view>
+      <view class="community-item-meta">生活 · {{item.item}} · {{item.duration}}</view>
+      <view class="community-post-text">{{item.text}}</view>
+      <view class="community-actions"><text>♡ 收藏</text><text>○ 回复</text></view>
+    </view>
+  </view>
+</view>
